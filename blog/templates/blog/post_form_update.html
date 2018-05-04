@@ -1,0 +1,15 @@
+{% extends parent_template|default:'blog/base_blog.html' %}
+
+{% block title %}{{ block.super}} - Update Post{% endblock %}
+
+{% block content %}
+   <div>
+       <div>
+        <form action="{{ post.get_update_url }}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update Post">
+        </form>
+       </div>
+   </div>
+{% endblock %}

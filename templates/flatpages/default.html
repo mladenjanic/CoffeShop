@@ -1,0 +1,14 @@
+{% extends parent_template|default:'materialize/materialize_base_dev.html' %}
+
+
+{% block title%}
+    {{ block.super }} - {{ flatpage.title }}
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <h1>{{ flatpage.title }}</h1>
+        <p>{{ flatpage.content|safe }}</p>
+    </div>
+{% endblock %}

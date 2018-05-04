@@ -1,0 +1,68 @@
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+{% block loads %}
+{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block materialize_stylesheets %}
+    {% endblock %}
+    {% block extra_stylesheets %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+        {% block title %}Startup Organizer{% endblock %}
+    </title>
+</head>
+<body>
+   <nav class="deep-orange darken-1">
+      <ul>
+          <li><a href="{% url 'blog_post_list' %}">Blog</a></li>
+          <li><a href="{% url 'organizer_startup_list' %}">Startups</a></li>
+          <li><a href="{% url 'organizer_tag_list' %}">Tags</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          {% for page in flatpages %}
+              <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+          {% endfor %}
+      </ul>    
+  </nav>
+  
+  {% if messages %}
+      <div>
+          <ul>
+              {% for message in messages %}
+                  {% if message.tags %}
+                  <li class="{{ message.tags}}"></li>
+                  {% else %}
+                  <li>{{ message }}</li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+      </div>
+  {% endif %}
+  <div class="container">
+   <header>
+      <h1 class="center">Startup Organizer</h1>
+   </header>
+   
+    {% block content %}
+    {% endblock %}
+    </div>
+    <br><br><br>
+    <footer class="page-footer grey darken-4 white-text center">
+      <div class="container">
+       <p>&copy; 2017 <a href="#">Mladen</a></p>
+       <p>Created for <a href="#">Mladen Janic Studio</a></p>
+      </div>
+   </footer>
+    
+    {% block materialize_javascripts %}
+    {% endblock %}
+    {% block extra_javascripts %}
+    {% endblock %}
+</body>
+</html>
